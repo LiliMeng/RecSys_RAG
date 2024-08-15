@@ -1,15 +1,17 @@
-import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from surprise import Dataset, Reader, KNNBasic
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 import torch
+import requests
+import io
 
-# Step 1: Load and preprocess the MovieLens 100K dataset
-def load_data():
-    data_path = 'ml-100k/u.data'
+# Step 1: Load and preprocess the MovieLens 100K dataset directly from the URL
+def load_data_from_url():
+    url = 'https://files.grouplens.org/datasets/movielens/ml-100k/u.data'
+    s = requests.get(url).content
     column_names = ['user_id', 'item_id', 'rating', 'timestamp']
-    df = pd.read_csv(data_path, sep='\t', names=column_names)
+    df = pd.read_csv(io.StringIO(s.decode('utf-8')), sep='\t', names=column_names)
     df = df.drop(columns=['timestamp'])
     return df
 
@@ -63,7 +65,7 @@ def get_combined_recommendations(knn, trainset, model, tokenizer, user_id, user_
 
 # Step 9: Main execution
 if __name__ == "__main__":
-    df = load_data()
+    df = load_data_from_url()
     train_data, _ = split_data(df)
     trainset = prepare_data_for_surprise(train_data)
     
