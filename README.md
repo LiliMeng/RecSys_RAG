@@ -8,12 +8,8 @@ This script loads the MovieLens 100K dataset, applies a collaborative filtering 
    - You’ll need to install the required Python libraries. You can do this using pip:
      ```bash
      pip install pandas scikit-learn surprise transformers torch
-     ```
 
-2. **Download the MovieLens 100K Dataset**:
-   - Ensure that you have the MovieLens 100K dataset in your working directory under the path `ml-100k/u.data`. You can download it from [MovieLens](https://grouplens.org/datasets/movielens/100k/).
-
-3. **Run the Script**:
+2. **Run the Script**:
    - Save the script above as `rag_movierec.py`.
    - Run it using Python:
      ```bash
@@ -29,7 +25,7 @@ This script loads the MovieLens 100K dataset, applies a collaborative filtering 
 
 This script provides a basic implementation of RAG for a recommendation system, which you can expand and refine according to your specific requirements.
 
-
+## `generate_movie_suggestions` Explanation
 Let's break down the function `generate_movie_suggestions` step by step:
 
 ### Purpose:
